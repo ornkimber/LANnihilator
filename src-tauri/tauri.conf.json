@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "The Big Red Button",
+  "version": "0.1.2",
+  "identifier": "local.severance.bigredbutton",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [{
+      "label": "main",
+      "title": "The Big Red Button",
+      "width": 320,
+      "height": 440,
+      "resizable": false,
+      "maximizable": false,
+      "decorations": false,
+      "alwaysOnTop": true,
+      "center": true
+    }],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src ipc: http://ipc.localhost; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+    }
+  },
+  "bundle": {
+    "icon": ["icons/icon.png", "icons/icon.ico"],
+    "active": true,
+    "targets": ["nsis"],
+    "shortDescription": "One Ethernet adapter. One very dramatic button.",
+    "windows": { "webviewInstallMode": { "type": "skip" }, "nsis": { "installMode": "currentUser" } }
+  }
+}

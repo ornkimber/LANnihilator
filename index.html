@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#181a1b" />
+    <title>The Big Red Button</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="console" id="console">
+      <header id="drag-region">
+        <span class="brand-mark" aria-hidden="true">⏣</span>
+        <span class="title"
+          >SEVERANCE SYSTEMS <small>FIELD UNIT / 01</small></span
+        >
+        <button
+          class="icon"
+          id="minimize"
+          aria-label="Minimize to tray"
+          title="Minimize to tray"
+        >
+          &#8722;
+        </button>
+        <button
+          class="icon"
+          id="close"
+          aria-label="Close application"
+          title="Close"
+        >
+          ×
+        </button>
+      </header>
+      <section class="faceplate">
+        <i class="screw top-left" aria-hidden="true"></i
+        ><i class="screw top-right" aria-hidden="true"></i>
+        <div class="designation">
+          <span>NSS—01</span><span>MANUAL OVERRIDE</span>
+        </div>
+        <h1>NETWORK SEVERANCE<br /><strong>SYSTEM</strong></h1>
+        <div
+          class="display"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div class="display-top">
+            <span><i id="status-led" class="led"></i> ETHERNET LINK</span
+            ><span id="mode">LOCAL</span>
+          </div>
+          <div id="status">SYSTEM CHECK</div>
+          <div id="detail">Establishing adapter status…</div>
+        </div>
+        <div class="mechanism">
+          <div class="warning-rail" aria-hidden="true"></div>
+          <div class="button-ring">
+            <button
+              id="trigger"
+              disabled
+              aria-label="Sever selected Ethernet connection"
+            >
+              <span class="power-symbol" aria-hidden="true">⏻</span
+              ><span id="button-label">SEVER LINK</span
+              ><small>PRESS TO EXECUTE</small>
+            </button>
+          </div>
+          <button
+            id="cover"
+            aria-label="Open safety cover"
+            aria-expanded="false"
+          >
+            <span class="cover-glint"></span
+            ><span class="cover-label"
+              ><span id="cover-action">LIFT TO ARM</span> <b>⌃</b></span
+            ><span class="cover-warning">CAUTION · LIVE CONTROL</span>
+          </button>
+          <div class="hinge" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="arm-indicator">
+            <i class="led" id="arm-led"></i
+            ><span id="arm-label">SAFETY ENGAGED</span
+            ><button id="disarm" hidden>DISARM</button>
+          </div>
+        </div>
+        <div class="warning-label">
+          <span aria-hidden="true">△</span> ONE BUTTON. ONE ETHERNET LINK.
+        </div>
+        <footer>
+          <button
+            id="settings-toggle"
+            aria-label="Adapter settings"
+            aria-expanded="false"
+          >
+            ⚙ <span>CONFIG</span></button
+          ><span id="adapter-label">NO TARGET SELECTED</span
+          ><button id="mute" aria-label="Mute sound" aria-pressed="false">
+            SND
+          </button>
+        </footer>
+        <i class="screw bottom-left" aria-hidden="true"></i
+        ><i class="screw bottom-right" aria-hidden="true"></i>
+      </section>
+      <section id="settings" hidden aria-label="Adapter settings">
+        <div class="settings-heading">
+          <h2>TARGET CONFIGURATION</h2>
+          <button id="settings-close" class="icon" aria-label="Close settings">
+            ×
+          </button>
+        </div>
+        <p>One physical PCI Ethernet adapter. No automatic target selection.</p>
+        <label for="adapters">ETHERNET ADAPTER</label
+        ><select id="adapters">
+          <option value="">Select an adapter…</option>
+        </select>
+        <button id="refresh">RESCAN ADAPTERS</button>
+        <p id="privilege"></p>
+        <details>
+          <summary>Emergency recovery</summary>
+          <p>
+            Press Win + R, enter <b>ncpa.cpl</b>, then right-click the selected
+            Ethernet adapter and choose <b>Enable</b>. Windows may ask for
+            administrator approval.
+          </p>
+        </details>
+        <p class="fine">
+          No Wi-Fi, USB, VPN, DNS, routing, or firewall changes.
+        </p>
+      </section>
+      <section
+        id="error-panel"
+        hidden
+        role="alert"
+        aria-label="Operation error"
+      >
+        <h2>OPERATION REJECTED</h2>
+        <p id="error-message"></p>
+        <button id="error-dismiss">ACKNOWLEDGE</button>
+        <button id="error-rescan">RESCAN STATE</button>
+      </section>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

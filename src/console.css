@@ -1,0 +1,261 @@
+.mechanism {
+  height: 201px;
+  position: relative;
+  perspective: 650px;
+  padding-top: 18px;
+}
+.warning-rail {
+  position: absolute;
+  top: 12px;
+  left: 38px;
+  right: 38px;
+  height: 161px;
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    135deg,
+    #b99140 0px,
+    #b99140 9px,
+    #151616 9px,
+    #151616 19px
+  );
+  box-shadow:
+    inset 0 0 12px 7px #0008,
+    0 2px 4px #000;
+}
+.button-ring {
+  position: relative;
+  width: 154px;
+  height: 154px;
+  margin: 0 auto;
+  border-radius: 50%;
+  padding: 12px;
+  background: conic-gradient(
+    #848586,
+    #2d3031,
+    #777a7b,
+    #191b1c,
+    #828587,
+    #313334,
+    #848586
+  );
+  box-shadow:
+    0 9px 10px #000b,
+    0 0 0 3px #0f1112,
+    inset 0 0 0 2px #aaaaaa44,
+    inset 0 0 0 8px #181a1b,
+    inset 0 0 9px 12px #000;
+}
+.button-ring:after {
+  position: absolute;
+  content: "";
+  inset: 9px;
+  border: 1px solid #aaaba344;
+  border-radius: 50%;
+  pointer-events: none;
+}
+#trigger {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 1px solid #ff7c6e;
+  background:
+    radial-gradient(ellipse at 50% 8%, #ff9a8c88 0, transparent 46%),
+    linear-gradient(175deg, #fa493a 0, #ce1e17 48%, #a30b08 75%, #c61912 100%);
+  box-shadow:
+    inset 0 3px 3px #ffb4a9aa,
+    inset 0 -5px 5px #700000,
+    0 7px 0 #620805,
+    0 9px 2px #000,
+    0 11px 10px #000a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 1px 2px #510000;
+  color: #ffded7;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+  position: relative;
+}
+#trigger:after {
+  position: absolute;
+  content: "";
+  top: 7px;
+  left: 22px;
+  right: 22px;
+  height: 34px;
+  border-radius: 60% 60% 50% 50%;
+  background: linear-gradient(#ffffff3b, transparent);
+  pointer-events: none;
+}
+#trigger:active:not(:disabled),
+body[data-state="busy"] #trigger {
+  transform: translateY(5px);
+  box-shadow:
+    inset 0 3px 3px #ffb4a999,
+    inset 0 -3px 4px #700000,
+    0 2px 0 #620805,
+    0 4px 2px #000,
+    0 5px 8px #000a;
+}
+.power-symbol {
+  font-size: 37px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 7px;
+}
+#button-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+#trigger small {
+  font-size: 5px;
+  letter-spacing: 1.5px;
+  margin-top: 6px;
+  color: #ffb8aa;
+}
+#cover {
+  position: absolute;
+  top: 10px;
+  left: 42px;
+  width: 192px;
+  height: 169px;
+  border: 2px solid #e47c6590;
+  border-radius: 12px 12px 23px 23px;
+  transform-origin: 50% 0%;
+  background: linear-gradient(
+    125deg,
+    #fcb09a25 0%,
+    #c9483520 40%,
+    #ffbda51a 41%,
+    #58120d44 100%
+  );
+  box-shadow:
+    inset 0 0 0 3px #ec8d6c22,
+    inset 0 -3px 0 #e2946855,
+    0 6px 12px #0009;
+  backdrop-filter: blur(1.2px);
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.6s;
+  z-index: 3;
+  transform-style: preserve-3d;
+  color: #ffe4c8;
+}
+.cover-glint {
+  position: absolute;
+  inset: 4px;
+  border-radius: 8px 8px 18px 18px;
+  background: linear-gradient(
+    115deg,
+    #ffffff20,
+    transparent 20%,
+    transparent 72%,
+    #ffffff16 73%,
+    transparent 78%
+  );
+  pointer-events: none;
+}
+.cover-label {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 26px;
+  font-family: Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 3px #000;
+}
+.cover-label b {
+  display: block;
+  font-size: 20px;
+  line-height: 12px;
+  margin-top: 8px;
+}
+.cover-warning {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 14px;
+  font-size: 5px;
+  letter-spacing: 1.5px;
+  color: #f4c3a7;
+}
+.hinge {
+  position: absolute;
+  top: 5px;
+  left: 65px;
+  right: 65px;
+  height: 10px;
+  display: flex;
+  z-index: 4;
+  border: 1px solid #171717;
+  border-radius: 3px;
+  background: linear-gradient(#737674, #303332 40%, #151716 70%, #555855);
+  box-shadow: 0 2px 3px #000;
+}
+.hinge i {
+  flex: 1;
+  border-right: 1px solid #0006;
+}
+.hinge i:last-child {
+  border: 0;
+}
+.arm-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font:
+    7px Consolas,
+    monospace;
+  letter-spacing: 1px;
+  color: #98988c;
+  height: 20px;
+}
+#disarm {
+  position: absolute;
+  right: 0;
+  font-size: 6px;
+  letter-spacing: 1px;
+  background: #1a1b19;
+  border: 1px solid #615944;
+  border-radius: 2px;
+  padding: 3px 4px;
+  color: #bbaa88;
+}
+body.armed #cover {
+  transform: rotateX(112deg);
+  opacity: 0.4;
+  pointer-events: none;
+}
+body.armed #arm-led {
+  background: #f35437;
+  box-shadow: 0 0 7px #ff4029;
+  animation: armed-pulse 0.65s infinite alternate;
+}
+body.armed #arm-label {
+  color: #eb9c7a;
+}
+body.armed .button-ring {
+  box-shadow:
+    0 9px 10px #000b,
+    0 0 0 3px #0f1112,
+    0 0 25px #f52b2430,
+    inset 0 0 0 8px #181a1b;
+}
+body[data-state="disabled"] #trigger {
+  background:
+    radial-gradient(ellipse at 50% 8%, #ffbd9f66, transparent 46%),
+    linear-gradient(175deg, #eb633f, #bd2920 48%, #8a1610 85%);
+}
+@keyframes armed-pulse {
+  to {
+    opacity: 0.35;
+  }
+}
