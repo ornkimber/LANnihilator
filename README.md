@@ -1,5 +1,7 @@
 # LANnihilator
 
+[![Windows CI](https://github.com/ornkimber/LANnihilator/actions/workflows/windows.yml/badge.svg)](https://github.com/ornkimber/LANnihilator/actions/workflows/windows.yml)
+
 A miniature Windows emergency console for an extremely ordinary operation: enable or disable **one explicitly selected physical Ethernet adapter**. Tauri 2, Rust, vanilla TypeScript, CSS metalwork, and entirely synthesized sound. No frontend runtime dependencies.
 
 ## Run the offline demonstration
@@ -46,7 +48,20 @@ Outputs:
 - `src-tauri/target/release/lannihilator.exe`
 - `src-tauri/target/release/bundle/nsis/*-setup.exe`
 
-Builds require dependency downloads once; application operation never requires the internet. Both npm and Cargo lockfiles are committed. The Windows workflow uses those lockfiles, runs formatting, type checks, tests, Clippy and release packaging, and uploads both binaries. It has not been run remotely from this session.
+Builds require dependency downloads once; application operation never requires the internet. Both npm and Cargo lockfiles are committed. The Windows workflow uses those lockfiles, runs formatting, type checks, tests, Clippy and release packaging, and uploads both binaries.
+
+## CI and releases
+
+GitHub Actions checks pull requests and pushes to `main` on Windows Server 2022. It runs frontend validation, isolated adapter tests, Rust formatting, unit tests and Clippy, then builds the optimized x64 executable and per-user installer. Each successful run retains a `LANnihilator-windows-x64` download for 14 days, including SHA-256 checksums. You can also run it manually from the Actions tab.
+
+To publish a release, update the version in `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock`, and `src-tauri/tauri.conf.json`, then commit and push. Create a matching tag:
+
+```powershell
+git tag v0.1.3
+git push origin v0.1.3
+```
+
+Use the actual version you committed. A tag with mismatched app versions fails before packaging. Once all checks and the Windows build pass, the workflow verifies checksums and publishes the executable, installer and `SHA256SUMS.txt` on GitHub Releases. Tags containing a hyphen produce prereleases. No additional repository secrets are required: only the release job receives write permission through GitHub's built-in token. Builds are unsigned and still require WebView2 to be installed separately.
 
 ### Optional local toolchain
 
