@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "The Big Red Button",
+  "productName": "LANnihilator",
   "version": "0.1.2",
   "identifier": "local.severance.bigredbutton",
   "build": {
@@ -13,7 +13,7 @@
     "withGlobalTauri": true,
     "windows": [{
       "label": "main",
-      "title": "The Big Red Button",
+      "title": "LANnihilator",
       "width": 320,
       "height": 440,
       "resizable": false,

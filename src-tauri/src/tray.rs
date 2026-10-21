@@ -38,7 +38,7 @@ pub fn setup(app: &tauri::App) -> tauri::Result<()> {
     let icon = app.default_window_icon().expect("Bundled application icon");
     let tray = TrayIconBuilder::new()
         .icon(icon.clone())
-        .tooltip("The Big Red Button")
+        .tooltip("LANnihilator")
         .menu(&menu)
         .show_menu_on_left_click(false)
         .on_menu_event(|app, event| match event.id.as_ref() {

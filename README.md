@@ -1,4 +1,4 @@
-# THE BIG RED BUTTON
+# LANnihilator
 
 A miniature Windows emergency console for an extremely ordinary operation: enable or disable **one explicitly selected physical Ethernet adapter**. Tauri 2, Rust, vanilla TypeScript, CSS metalwork, and entirely synthesized sound. No frontend runtime dependencies.
 
@@ -43,7 +43,7 @@ npm run tauri build
 
 Outputs:
 
-- `src-tauri/target/release/big-red-button.exe`
+- `src-tauri/target/release/lannihilator.exe`
 - `src-tauri/target/release/bundle/nsis/*-setup.exe`
 
 Builds require dependency downloads once; application operation never requires the internet. Both npm and Cargo lockfiles are committed. The Windows workflow uses those lockfiles, runs formatting, type checks, tests, Clippy and release packaging, and uploads both binaries. It has not been run remotely from this session.
