@@ -54,14 +54,16 @@ Builds require dependency downloads once; application operation never requires t
 
 GitHub Actions checks pull requests and pushes to `main` on Windows Server 2022. It runs frontend validation, isolated adapter tests, Rust formatting, unit tests and Clippy, then builds the optimized x64 executable and per-user installer. Each successful run retains a `LANnihilator-windows-x64` download for 14 days, including SHA-256 checksums. You can also run it manually from the Actions tab.
 
-To publish a release, update the version in `package.json`, `package-lock.json`, `src-tauri/Cargo.toml`, `src-tauri/Cargo.lock`, and `src-tauri/tauri.conf.json`, then commit and push. Create a matching tag:
+To publish a release, create and push a version tag on the commit you want to ship:
 
 ```powershell
-git tag v0.1.3
-git push origin v0.1.3
+git tag v0.1
+git push origin v0.1
 ```
 
-Use the actual version you committed. A tag with mismatched app versions fails before packaging. Once all checks and the Windows build pass, the workflow verifies checksums and publishes the executable, installer and `SHA256SUMS.txt` on GitHub Releases. Tags containing a hyphen produce prereleases. No additional repository secrets are required: only the release job receives write permission through GitHub's built-in token. Builds are unsigned and still require WebView2 to be installed separately.
+The tag is the release version: `v0.1` packages app version `0.1.0`, `v1.2.3` packages `1.2.3`, and `v1.2.3-rc.1` packages a prerelease. The workflow updates all app manifests and lockfiles in its temporary checkout before building; you do not need to edit or commit version numbers. Branch builds use the checked-in development version. Tags must use valid numeric version components; numeric prerelease components cannot contain leading zeroes.
+
+Once checks and the Windows build pass, the workflow verifies checksums and publishes the executable, installer and `SHA256SUMS.txt` on GitHub Releases. Tags containing a hyphen produce prereleases. No additional repository secrets are required: only the release job receives write permission through GitHub's built-in token. Builds are unsigned and require WebView2 to be installed separately. Use a new tag for each release; existing tags continue to use the workflow stored in their tagged commit.
 
 ### Optional local toolchain
 

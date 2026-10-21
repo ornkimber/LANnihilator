@@ -42,17 +42,11 @@ jobs:
             ~/.cargo/git
             src-tauri/target
           key: windows-2022-rust-${{ hashFiles('src-tauri/Cargo.lock', 'src-tauri/Cargo.toml') }}
-      - name: Validate release version
+      - name: Set package version from release tag
         if: startsWith(github.ref, 'refs/tags/')
         env:
           RELEASE_TAG: ${{ github.ref_name }}
-        run: |
-          $packageVersion = (Get-Content package.json -Raw | ConvertFrom-Json).version
-          $tauriVersion = (Get-Content src-tauri/tauri.conf.json -Raw | ConvertFrom-Json).version
-          $cargoVersion = [regex]::Match((Get-Content src-tauri/Cargo.toml -Raw), '(?m)^version = "([^"]+)"').Groups[1].Value
-          if ($env:RELEASE_TAG -cne "v$packageVersion" -or $packageVersion -cne $tauriVersion -or $packageVersion -cne $cargoVersion) {
-            throw 'Tag must equal v<version>, with matching package.json, Cargo.toml and tauri.conf.json versions.'
-          }
+        run: node scripts/set-release-version.mjs "$env:RELEASE_TAG"
       - run: npm ci
       - name: Type check, format and validate frontend
         run: npm run lint
